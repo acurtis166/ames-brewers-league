@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-import datetime as dt
+from datetime import datetime as dt
 from json import dumps
-import os
+from os import listdir
 from ftplib import FTP
 import secrets
 
@@ -43,7 +43,7 @@ for competition in competitions:
     date = competition.get('Date')
 
     # query df_e for date
-    df_e_comp = df_e[date.strftime(r'%Y-%m-%d')]
+    df_e_comp = df_e.loc[date.strftime(r'%Y-%m-%d')]
 
     # convert df_e_comp to list of dicts
     entries = df_e_comp.to_dict('records')
@@ -70,9 +70,9 @@ for competition in competitions:
 
 # create minutes data from pdf files in minutes folder
 minutes = []
-for minute_file in os.listdir('..\\static\\minutes'):
+for minute_file in listdir('..\\static\\minutes'):
     # construct date from file name
-    date = dt.datetime.strptime(minute_file[0:-4], r'%Y-%m')
+    date = dt.strptime(minute_file[0:-4], r'%Y-%m')
     minute = {
         'FileName': minute_file,
         'FormattedDate': date.strftime(r'%B %Y')
@@ -118,7 +118,7 @@ with FTP(secrets.site) as ftp:
     minutes_dir = '..\\static\\minutes'
     ftp.cwd('../minutes')
     ftp_minutes = ftp.nlst()
-    for fname in os.listdir(minutes_dir):
+    for fname in listdir(minutes_dir):
         if fname not in ftp_minutes:
             ftp.storbinary('STOR ' + fname,
                            open(minutes_dir + '\\' + fname, 'rb'))
