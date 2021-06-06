@@ -40,6 +40,8 @@ Following are instructions for making monthly updates to the website.
 ## Maintenance
 One thing to be aware of is that the website files are uploaded to the web server using "FTP", or "file transfer protocol". This method requires the domain name, a username, and a password. These items are stored in the Python file "...\ABL\ABL 3.0\abl\secrets.py" and imported by the "abl.py" script when it runs. If the domain name or credentials change, it will be necessary to change those items in this file. This can be done with a basic text editor like "Notepad". To open the file in Notepad, right-click on the file and hover over "Open with...". If Notepad is available, select it; otherwise, select "Choose another app" and find Notepad.
 
+While I developed the Python program to make monthly updates efficient, you can also transfer files manually with software such as FileZilla (https://filezilla-project.org/). In fact, as it currently stands you need to do this to make changes to the CSS, JS, or image files. The only files that are posted automatically are the index.html file, minutes files, and the data.js file.
+
 ## Dependencies
 The following CSS and JS libraries are loaded via "CDN", or "content delivery network", in the index.html file, and are required for the website to look and behave as intended. Older or newer versions may work as well.
 
