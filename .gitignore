@@ -1,6 +1,7 @@
 .vscode/
 
-update_site/.vscode/
-update_site/__pycache__/
-update_site/abl_update.exe
-update_site/secrets.py
+venv/
+
+abl/.vscode/
+abl/__pycache__/
+abl/secrets.py
