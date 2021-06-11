@@ -7,3 +7,7 @@
 div.page.inactive {
     display: none;
 }
+
+#style-table tbody tr {
+    cursor: pointer;
+}

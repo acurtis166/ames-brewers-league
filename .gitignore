@@ -1,7 +1,4 @@
 .vscode/
-
 venv/
-
-abl/.vscode/
-abl/__pycache__/
-abl/secrets.py
+__pycache__/
+secrets.py

@@ -15,7 +15,9 @@
 <body class="bg-dark">
     <div id="main-container" class="container border bg-light my-5">
         <!--Alert-->
-        <div class="alert alert-success fixed-top text-center">After shutting down for COVID-19, monthly meetings will begin again starting Tuesday, June 8, 2021!</div>
+        <div class="alert alert-success fixed-top text-center">
+            After shutting down for COVID-19, monthly meetings will begin again starting Tuesday, June 8, 2021!
+        </div>
 
         <!--Header-->
         <div id="header" class="jumbotron row">
@@ -120,10 +122,14 @@
                         events and the style competition will be posted here.
                     </p>
 
+                    <div class="row mb-3">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <select id="select-year-minutes" class="form-control"></select>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-4 col-md-5 col-sm-8 col-xs-12">
-                            <input id="minutes-search" type="text" placeholder="Search Minutes..."
-                                class="form-control mb-3">
                             <div id="minutes-list" class="list-group"></div>
                         </div>
                     </div>
@@ -169,7 +175,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="/static/js/data.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
 
