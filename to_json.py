@@ -6,6 +6,10 @@ import os
 from pathlib import Path
 import json
 
+BASE_PATH = Path('www', 'static')
+DATA_PATH = BASE_PATH / 'data'
+MINUTES_PATH = BASE_PATH / 'minutes'
+
 
 def get_competition_df(filepath:str='data.xlsx'):
     """Read competition data from an Excel file into a dict of {year (int): DataFrame}.
@@ -100,7 +104,7 @@ def create_minutes(year:int):
         list[dict]: The dictionaries, one for each meeting minutes file.
     """
 
-    path = 'www\\static\\minutes\\{}'.format(year)
+    path = MINUTES_PATH / str(year)
     make_dir(path)
 
     # create minutes data from pdf files in minutes folder
@@ -116,7 +120,7 @@ def create_minutes(year:int):
     return sorted(minutes, key=lambda m: m['FileName'])
 
 
-def create_competition_files(competition_dfs:list, entry_df:pd.DataFrame):
+def create_competition_json(competition_dfs:list, entry_df:pd.DataFrame):
     """Create JSON data files for each year of competitions.
 
     Args:
@@ -126,57 +130,66 @@ def create_competition_files(competition_dfs:list, entry_df:pd.DataFrame):
 
     # for each year in competitions df, create the competition and leaderboard data files
     for yr, comp_df in competition_dfs.items():
+        yr_path = DATA_PATH / str(yr)
+        # filter entry_df for the appropriate year
         entries = entry_df[entry_df.index.year == yr]
-        # create directory if not exists
-        make_dir('www\\static\\data\\{}'.format(yr))
-        # create competition list
+        # create year subdirectory if not exists
+        make_dir(yr_path)
+        # create competition list and write to json file
         comps = create_competitions(comp_df, entries)
-        create_json_file(comps, 'www\\static\\data\\{}\\competitions.txt'.format(yr))
-        # create brewer totals list, only include top 5
+        create_json_file(comps, yr_path / 'competitions.txt')
+        # create brewer totals list and write to json file
         totals = create_brewer_totals(entries)
-        create_json_file(totals, 'www\\static\\data\\{}\\totals.txt'.format(yr))
+        create_json_file(totals, yr_path / 'totals.txt')
 
-    # create the competition years data file
-    create_json_file(sorted(competition_dfs.keys(), reverse=True), 'www\\static\\data\\competition_years.txt')
+    # create the competition years data file, descending
+    create_json_file(
+        sorted(competition_dfs.keys(), reverse=True), 
+        DATA_PATH / 'competition_years.txt'
+    )
 
 
-def create_minutes_files():
+def create_minutes_json():
     """Create JSON data files for each year of minutes files.
     """
 
     # get all the years of minutes from the minutes directory
-    minute_yrs = [int(y) for y in os.listdir('www\\static\\minutes')]
+    minute_yrs = [int(p.name) for p in MINUTES_PATH.iterdir()]
 
     for yr in minute_yrs:
-        # create directory if not exists
-        make_dir('www\\static\\data\\{}'.format(yr))
+        yr_path = DATA_PATH / str(yr)
+        # create year subdirectory if not exists
+        make_dir(yr_path)
         # create minutes
         minutes = create_minutes(yr)
-        create_json_file(minutes, 'www\\static\\data\\{}\\minutes.txt'.format(yr))
+        create_json_file(minutes, yr_path / 'minutes.txt')
 
-    # create the minutes years data file
-    create_json_file(sorted(minute_yrs, reverse=True), 'www\\static\\data\\minutes_years.txt')
+    # create the minutes years data file, descending
+    create_json_file(
+        sorted(minute_yrs, reverse=True), 
+        DATA_PATH / 'minutes_years.txt'
+    )
 
 
-def make_dir(path:str):
+def make_dir(path:Path):
     """Create a directory if it doesn't yet exist.
 
     Args:
-        path (str): The path to create.
+        path (Path): The path to create.
     """
 
-    Path(path).mkdir(parents=True, exist_ok=True)
+    path.mkdir(parents=True, exist_ok=True)
 
 
-def create_json_file(data, path:str):
+def create_json_file(data, path:Path):
     """Create a JSON file at the `path` with the given `data`.
 
     Args:
         data (JSON-serializable type): The data to serialize to JSON.
-        path (str): The path of the file to write.
+        path (Path): The path of the file to write.
     """
 
-    with open(path, 'w') as fp:
+    with path.open('w') as fp:
         # specify indent and separators to create a minified file
         json.dump(data, fp, indent=None, separators=(',', ':'))
 
@@ -193,11 +206,12 @@ def main():
     comp_dfs = get_competition_df()
     entry_df = get_entry_df()
 
-    create_competition_files(comp_dfs, entry_df)
-    create_minutes_files()
+    # create the json files
+    create_competition_json(comp_dfs, entry_df)
+    create_minutes_json()
 
 
 if __name__ == '__main__':
-    print('Creating JSON data files')
+    print('Creating JSON data files...')
     main()
     print('Success')
