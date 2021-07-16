@@ -73,7 +73,7 @@ def make_dir(ftp_conn:ftplib.FTP, path:Path):
         ftp_conn.mkd(web_path)
     except ftplib.error_perm as ex:
         e_str = str(ex)
-        if '550' not in e_str or 'File exists' not in e_str:
+        if '550 Cannot create a file when that file already exists' not in e_str:
             # only raise the exception if the error isn't that the directory exists
             raise ex
 

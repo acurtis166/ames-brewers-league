@@ -1,0 +1,1 @@
+[{"Name":"Ron Nelson","Points":3.0,"Place":1},{"Name":"Brad and Beth Coates","Points":2.0,"Place":2},{"Name":"John","Points":1.0,"Place":3},{"Name":"Levi and Kari Storjohann","Points":0.5,"Place":4}]
