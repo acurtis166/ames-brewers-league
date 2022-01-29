@@ -1,1 +1,1 @@
-[]
+[{"Name":"Jake","Points":3.5,"Place":1},{"Name":"Ron Nelson","Points":2.0,"Place":2},{"Name":"Brad and Beth Coates","Points":1.0,"Place":3},{"Name":"Pete Crow","Points":1.0,"Place":3}]
