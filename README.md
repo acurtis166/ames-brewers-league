@@ -27,7 +27,7 @@ In order to update the website automatically as intended, you need to use Python
 ## Updating the Site
 Following are instructions for making monthly updates to the website.
 
-### Windows 10
+### Windows 10/11
 1. Save the meeting minutes as a PDF file in "www\static\minutes". Name the file as "YYYY-MM.pdf" (e.g. "2021-06.pdf" for June 2021). This style is necessary for the Python file to properly parse the date.
 1. Update the Excel file, "data.xlsx", with any competitions, competition entries, or brewers as necessary. Note that the dropdown for brewers in the "Entries" tab pulls from the "Brewers" list, so add any new brewers first.
 1. Make any updates necessary to the HTML, CSS, or JavaScript files. This can be done with a basic text editor like "Notepad" or software with more features like syntax highlighting, such as "Visual Studio Code" (https://code.visualstudio.com/download). To open the file in Notepad, right-click on the file and hover over "Open with...". If Notepad is available, select it; otherwise, select "Choose another app" and find Notepad.
