@@ -13,7 +13,7 @@ File transfer to the web server is also automated using Python ("ftp.py").
 ## Getting Started
 In order to update the website automatically as intended, you need to use Python. Python is a programming language. Python files (or scripts) are text files ending in ".py" and contain Python code, as you will find in "to_json.py", for example. In order to run the code in the files, a Python interpreter along with a few 1st and 3rd party "libraries" of code are required. Download and install Python (version >=3.9) from "https://www.python.org/downloads/". Be sure to download the installer appropriate for your operating system. When installing Python, be sure to check the box that adds Python to your "PATH" environment variable. This will allow you to run Python files from the command prompt without having to specify the location of the interpreter. Installing Python will provide access to the interpreter and its "standard libraries" of code.
 
-### Windows 10
+### Windows 10/11
 1. Install Python as described above.
 1. Navigate to this directory. Click in the address bar and copy the text.
 1. Click in the search textbox in the taskbar. Search for "cmd" and press enter or click on "Command Prompt". This will open up the basic Windows shell software, using which we can install the code libraries needed.
