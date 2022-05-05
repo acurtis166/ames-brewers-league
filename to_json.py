@@ -25,6 +25,7 @@ def get_competition_df(filepath:str='data.xlsx'):
     df['Year'] = df.index.year
     df['Date'] = df.index.strftime('%Y-%m-%d')
     df['Month'] = df.index.strftime('%B')
+    df['Category'] = df.Category.fillna('')
     yr_grps = {yr: g for yr, g in df.groupby(df.index.year)}
     return yr_grps
 
