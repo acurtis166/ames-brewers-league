@@ -6,6 +6,7 @@ import os
 from contextlib import contextmanager
 
 import secrets
+import sys
 
 
 def transfer():
@@ -171,11 +172,16 @@ def conn():
 
     # create and provide credentials for the connection
     ftp = ftplib.FTP(secrets.site)
-    ftp.login(secrets.username, secrets.password)
     try:
+        ftp.login(secrets.username, secrets.password)
         yield ftp
-    finally:
-        # close the connection when the context is complete
+    except ftplib.error_perm as ex:
+        print('Error occurred when trying to log in to the FTP server. ' +
+            'If the login credentials are accurate, contact Mike Young (mikeyounghb@gmail.com) for assistance. ' +
+            f'Error message: {ex}')
+        sys.exit()
+    finally: 
+        # close the ftp connection when complete
         ftp.close()
     
 
