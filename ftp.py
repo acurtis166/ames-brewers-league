@@ -5,7 +5,7 @@ from pathlib import Path
 import os
 from contextlib import contextmanager
 
-import secrets
+import config
 import sys
 
 
@@ -171,9 +171,9 @@ def conn():
     """
 
     # create and provide credentials for the connection
-    ftp = ftplib.FTP(secrets.site)
+    ftp = ftplib.FTP(config.site)
     try:
-        ftp.login(secrets.username, secrets.password)
+        ftp.login(config.username, config.password)
         yield ftp
     except ftplib.error_perm as ex:
         print('Error occurred when trying to log in to the FTP server. ' +
@@ -193,7 +193,7 @@ def main():
     """
     
     # transfer files from the local filesystem to the web server
-    print('Transferring files to {}'.format(secrets.site))
+    print('Transferring files to {}'.format(config.site))
     transfer()
     print('Success')
 
