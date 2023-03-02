@@ -21,7 +21,8 @@ def get_competition_df(filepath:str='data.xlsx'):
         dict: Competitions data grouped into years. Keys are the years of competitions and values are DataFrames.
     """
 
-    df = pd.read_excel(filepath, sheet_name='Competitions', index_col='Date', usecols=['Date', 'Style', 'Category'])
+    df = pd.read_excel(filepath, sheet_name='Competitions', usecols=['Date', 'Style', 'Category'], engine='openpyxl')
+    df = df.set_index('Date')
     df['Year'] = df.index.year
     df['Date'] = df.index.strftime('%Y-%m-%d')
     df['Month'] = df.index.strftime('%B')
@@ -40,7 +41,8 @@ def get_entry_df(filepath:str='data.xlsx'):
         DataFrame: Competition entries data.
     """
 
-    df = pd.read_excel(filepath, sheet_name='Entries', index_col='Date')
+    df = pd.read_excel(filepath, sheet_name='Entries', engine='openpyxl')
+    df = df.set_index('Date')
     df = df.fillna('')
     return df
 
@@ -86,7 +88,7 @@ def create_brewer_totals(entry_df:pd.DataFrame):
     # create totals for each brewer
     brewersums = entry_df\
         .groupby('Name')\
-        .sum()\
+        .sum(numeric_only=True)\
         .reset_index()\
         .sort_values('Points', ascending=False)
     
