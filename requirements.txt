@@ -1,4 +1,1 @@
-black
-isort
-pytest
 jinja2
