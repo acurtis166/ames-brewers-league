@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Upcoming Competitions</h1>
+<hr>
+
+<p class="mt-3">
+    Check here to plan your next brew.
+</p>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Style</th>
+                    <th>Category</th>
+                    <th>BJCP Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comp in competitions %}
+                <tr>
+                    <td>{{ comp.date.strftime('%m/%d/%Y') }}</td>
+                    <td>{{ comp.style }}</td>
+                    <td>{{ comp.category }}</td>
+                    <td>{{ comp.bjcp_year }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Leaderboards</h1>
+<hr>
+
+<p class="mt-3">
+    Brewer point totals are presented for each year.
+</p>
+
+<div class="row mb-3">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        {% for year, lboard in leaderboards.items() %}
+        <hr>
+        <h3>{{ year }}</h3>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Place</th>
+                    <th>Brewer</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in lboard %}
+                <tr>
+                    <td>{{ entry.place }}</td>
+                    <td>{{ entry.brewer }}</td>
+                    <td>{{ entry.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>2023 Raffle</h1>
+<hr>
+
+<p class="mt-3">
+    The next Ames Brewers League's annual raffle will take place <b>April 16, 2023</b>
+    at <b>Torrent Brewing Company</b> from <b>2-5 PM</b>. Various brewing-related items have
+    been donated by local companies and online retailers as prizes. The sponsors for the
+    raffle are posted below. We appreciate their contributions and encourage you
+    to check out their offerings. We hope to see you there!
+</p>
+
+<h3>Sponsors</h3>
+<hr>
+
+{% for row in sponsor_rows %}
+<div class="row">
+    {% for sponsor in row %}
+
+    <div class="col-md-4">
+        <a href="{{ sponsor.url }}">
+            <img src="{{ sponsor.logo_url }}" class="img-fluid">
+        </a>
+        <p>
+            {{ sponsor.name }}
+        </p>
+    </div>
+
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}

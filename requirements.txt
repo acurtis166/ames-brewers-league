@@ -1,2 +1,4 @@
-pandas
-openpyxl
+black
+isort
+pytest
+jinja2

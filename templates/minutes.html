@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Meeting Minutes</h1>
+<hr>
+
+<p class="mt-3">
+    Following the monthly meetings, the notes recorded regarding club
+    events and the style competition will be posted here.
+</p>
+
+<div class="row">
+    <div class="col-lg-4 col-md-5 col-sm-8 col-xs-12">
+        <div id="minutes-list" class="list-group">
+            {% for min in minutes %}
+            <a href="/minutes/{{ min.date.year }}/{{ min.file_path.name }}" target="_blank"
+                class="p-2 text-primary list-group-item list-group-item-action">
+                {{ min.date.strftime('%B %Y') }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

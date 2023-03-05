@@ -1,1 +1,0 @@
-[{"Name":"Pete Crow","Points":5.5,"Place":1},{"Name":"Levi and Kari Storjohann","Points":4.0,"Place":2},{"Name":"Ron Nelson","Points":3.5,"Place":3},{"Name":"Brad and Beth Coates","Points":2.5,"Place":4},{"Name":"Jay Anderson","Points":2.0,"Place":5},{"Name":"John","Points":1.0,"Place":6},{"Name":"Nadav Mer","Points":1.0,"Place":6},{"Name":"Neal Kaloupek","Points":0.5,"Place":8}]
