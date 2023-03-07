@@ -1,3 +1,5 @@
+"""Generate the static ABL website using file-based data sources."""
+
 import datetime as dt
 import shutil
 from pathlib import Path
@@ -20,14 +22,17 @@ def empty_public_dir():
 
 
 def copy_static_files():
+    """Copy static resources from the template directory to the public one."""
     shutil.copytree(TEMPLATE_DIR / "static", PUBLIC_DIR / "static")
 
 
 def copy_minutes(minutes_dir: Path):
+    """Copy meeting minutes from `minutes_dir` to the public directory."""
     shutil.copytree(minutes_dir, PUBLIC_DIR / "minutes")
 
 
 def render(env: Environment, filename: str, **kwargs):
+    """Render an HTML template and save it in the public directory."""
     template = env.get_template(filename)
     html = template.render(**kwargs)
     (PUBLIC_DIR / filename).write_text(html)

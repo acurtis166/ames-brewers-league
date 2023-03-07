@@ -1,4 +1,4 @@
-"""FTP file handling."""
+"""Logic for managing files and directories on a web server via FTP."""
 
 import ftplib
 from contextlib import contextmanager
@@ -25,7 +25,16 @@ def connect(site_name: str, username: str, password: str):
 
 
 class FTPSession:
+    """Logic for handling paired local and remote file systems via FTP."""
+
     def __init__(self, ftp: ftplib.FTP, root_dir: Path):
+        """Create a session.
+
+        Args:
+            ftp (ftplib.FTP): An active FTP connection.
+            root_dir (pathlib.Path): The local directory that mirrors the
+                remote system.
+        """
         self._ftp = ftp
         self._root_dir = root_dir
 

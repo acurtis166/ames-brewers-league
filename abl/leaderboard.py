@@ -1,3 +1,5 @@
+"""Logic for creating brewing competition leaderboards."""
+
 import collections
 from dataclasses import dataclass
 
@@ -6,6 +8,8 @@ from abl.competition import Competition
 
 @dataclass(frozen=True)
 class LeaderboardEntry:
+    """A brewer's point total and standing for a given competition year."""
+
     brewer: str
     points: float
     place: int
@@ -14,6 +18,7 @@ class LeaderboardEntry:
 def create_leaderboards(
     competitions: list[Competition],
 ) -> dict[int, list[LeaderboardEntry]]:
+    """Create annual leaderboards from a list of competitions."""
     comps_by_year = collections.defaultdict(list)
     for comp in competitions:
         comps_by_year[comp.date.year].append(comp)
@@ -27,6 +32,7 @@ def create_leaderboards(
 def _create_leaderboard(
     competitions: list[Competition],
 ) -> list[LeaderboardEntry]:
+    """Create an annual leaderboard from a list of competitions."""
     totals = collections.defaultdict(float)
     for comp in competitions:
         for entry in comp.entries:

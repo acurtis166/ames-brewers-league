@@ -1,3 +1,5 @@
+"""Transfer files from the local public directory to the web server."""
+
 from pathlib import Path
 
 from abl import config, ftp
