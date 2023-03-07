@@ -3,13 +3,11 @@ from pathlib import Path
 from abl import config, ftp
 
 ROOT_DIR = Path(__file__).parents[1]
-CONFIG = config.load(ROOT_DIR / "config.json")
+CONFIG = config.load(ROOT_DIR / "config.json").ftp
 
 
 def main():
-    with ftp.connect(
-        CONFIG.ftp.site, CONFIG.ftp.username, CONFIG.ftp.password
-    ) as conn:
+    with ftp.connect(CONFIG.site, CONFIG.username, CONFIG.password) as conn:
         sess = ftp.FTPSession(conn, ROOT_DIR / "public")
         print("Transferring files to web server")
         sess.transfer_dir(ROOT_DIR / "public")
