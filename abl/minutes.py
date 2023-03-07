@@ -3,7 +3,7 @@ import datetime as dt
 from pathlib import Path
 
 
-@dataclass
+@dataclass(frozen=True)
 class Minutes:
     file_path: Path
 

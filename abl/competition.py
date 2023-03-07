@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-@dataclass
+@dataclass(frozen=True)
 class Entry:
     """A single brewer's beer submission to a competition."""
 
@@ -16,7 +16,7 @@ class Entry:
     points: float
 
 
-@dataclass
+@dataclass(frozen=True)
 class Competition:
     """A monthly brewing competition."""
 

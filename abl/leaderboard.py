@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from abl.competition import Competition
 
 
-@dataclass
+@dataclass(frozen=True)
 class LeaderboardEntry:
     brewer: str
     points: float
